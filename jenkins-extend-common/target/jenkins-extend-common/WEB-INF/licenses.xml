@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:dependencies xmlns:l='licenses' groupId='com.wingarden.cicd.jenkins.plugins' artifactId='jenkins-extend-common' version='0.0.1-SNAPSHOT'><l:dependency name='jenkins-extend-common' groupId='com.wingarden.cicd.jenkins.plugins' artifactId='jenkins-extend-common' version='0.0.1-SNAPSHOT' url=''><l:description>The Jenkins Plugins Parent POM Project</l:description></l:dependency></l:dependencies>
