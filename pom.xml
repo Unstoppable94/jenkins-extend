@@ -116,9 +116,9 @@
 	</build>
 
 	<scm>
-		<connection>scm:git:git://github.com/jenkinsci/jsgames-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:jenkinsci/jsgames-plugin.git</developerConnection>
-		<url>https://github.com/jenkinsci/jsgames-plugin</url>
+		<connection>scm:git:git://10.0.2.50:180/wingrow/jenkins-extend.git</connection>
+		<developerConnection>scm:git:git@10.0.2.50:180/wingrow/jenkins-extend.git</developerConnection>
+		<url>http://10.0.2.50:180/wingrow/jenkins-extend/blob/master/README.md</url>
 	</scm>
 
 	<modules>
