@@ -1,4 +1,5 @@
 com\wingarden\cicd\jenkins\common\utils\XmlUtil.class
+com\wingarden\cicd\jenkins\common\utils\Message.class
 com\wingarden\cicd\jenkins\common\infrastructure\ApiAble.class
 com\wingarden\cicd\jenkins\common\dal\dao\BaseDao.class
 com\wingarden\cicd\jenkins\common\infrastructure\InvisiblePlugin.class
@@ -14,5 +15,6 @@ com\wingarden\cicd\jenkins\common\dal\dao\BaseFsDao$3.class
 com\wingarden\cicd\jenkins\common\dal\dao\BaseFsDao.class
 com\wingarden\cicd\jenkins\common\infrastructure\ApiExt.class
 com\wingarden\cicd\jenkins\common\dal\dao\BaseFsDao$1.class
+com\wingarden\cicd\jenkins\common\utils\UUIDGenerator.class
 com\wingarden\cicd\jenkins\common\infrastructure\Resource.class
 com\wingarden\cicd\jenkins\common\dal\dao\BaseFsDao$2.class

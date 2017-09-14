@@ -9,5 +9,6 @@ C:\Users\Administrator\eclipse-workspace\jenkins-extend-root\jenkins-extend-comm
 C:\Users\Administrator\eclipse-workspace\jenkins-extend-root\jenkins-extend-common\src\main\java\com\wingarden\cicd\jenkins\common\infrastructure\AbstractResource.java
 C:\Users\Administrator\eclipse-workspace\jenkins-extend-root\jenkins-extend-common\src\main\java\com\wingarden\cicd\jenkins\common\utils\XmlUtil.java
 C:\Users\Administrator\eclipse-workspace\jenkins-extend-root\jenkins-extend-common\src\main\java\com\wingarden\cicd\jenkins\common\utils\UUIDGenerator.java
+C:\Users\Administrator\eclipse-workspace\jenkins-extend-root\jenkins-extend-common\src\main\java\com\wingarden\cicd\jenkins\common\utils\Message.java
 C:\Users\Administrator\eclipse-workspace\jenkins-extend-root\jenkins-extend-common\src\main\java\com\wingarden\cicd\jenkins\common\dal\dao\BaseFsDao.java
 C:\Users\Administrator\eclipse-workspace\jenkins-extend-root\jenkins-extend-common\src\main\java\com\wingarden\cicd\jenkins\common\utils\StringToolkit.java

@@ -10,7 +10,6 @@ import org.kohsuke.stapler.export.Exported;
 import org.kohsuke.stapler.export.ExportedBean;
 import org.kohsuke.stapler.interceptor.RequirePOST;
 import org.kohsuke.stapler.json.JsonBody;
-import org.kohsuke.stapler.json.JsonResponse;
 import org.kohsuke.stapler.verb.DELETE;
 import org.kohsuke.stapler.verb.PUT;
 import org.slf4j.Logger;
@@ -39,6 +38,17 @@ public class SamplePlugin extends InvisiblePlugin {
 		return "sample";
 	}
 
+	/**
+	 * Usage Example:
+	 * 
+	 * <pre>
+	 * curl -X POST -H Content-Type:application/json ${JENKINS_PATH}/sample/create \
+	 * -d '{"address":{"displayName":"address","id":"111","link":"广州市天河区","name":"Address"},"age":22,"displayName":"李征","name":"lizheng"}'
+	 * </pre>
+	 * 
+	 * @param json
+	 * @return
+	 */
 	@RequirePOST
 	public Object doCreate(@JsonBody JSONObject json) {
 		log.info("[create]" + json);
@@ -46,7 +56,18 @@ public class SamplePlugin extends InvisiblePlugin {
 		personDao.insert(person);
 		return JSONObject.fromObject(person).toString();
 	}
-	
+
+	/**
+	 * Usage Example:
+	 * 
+	 * <pre>
+	 * curl -X DELETE -H Content-Type:application/json   ${JENKINS_PATH}/sample/delete \
+	 * -d '{"id":"694d53226b744686b6882673efafcec1"}'
+	 * </pre>
+	 * 
+	 * @param json
+	 * @return
+	 */
 	@DELETE
 	public Object doDelete(@JsonBody JSONObject json) {
 		log.info("[delete]" + json);
@@ -59,11 +80,29 @@ public class SamplePlugin extends InvisiblePlugin {
 		return json.toString();
 	}
 
+	/**
+	 * Usage Example:
+	 * 
+	 * <pre>
+	 * curl ${JENKINS_PATH}/sample/person/personid/api/json
+	 * curl ${JENKINS_PATH}/sample/person/personid/api/xml
+	 * </pre>
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Object getPerson(String id) {
 		log.info("[person]" + id);
 		return personDao.queryOne(id);
 	}
 
+	/**
+	 * Usage Example:
+	 * <pre>
+	 * curl ${JENKINS_PATH}/sample/persons/personid1,personid2,...
+	 * </pre>
+	 * @return
+	 */
 	@WebMethod(name = "persons")
 	public Object getPersons() {
 		String ids = Stapler.getCurrentRequest().getRestOfPath();
@@ -71,16 +110,25 @@ public class SamplePlugin extends InvisiblePlugin {
 		List<Person> persons = null;
 		if (null == ids || ids.equals("")) {
 			persons = personDao.queryAll();
-		}else {
+		} else {
 			ids = ids.substring(1).split("/")[0];
 			String[] idArray = ids.split("\\,");
 			persons = personDao.queryIds(idArray);
 		}
-		
-		
 		return JSONArray.fromObject(persons).toString();
 	}
 
+	/**
+	 * Usage Example:
+	 * <pre>
+	 * curl -X PUT -H Content-Type:application/json
+	 * ${JENKINS_PATH}/jenkins/sample/modify \ -d
+	 * '{"displayName":"李征1","id":"694d53226b744686b6882673efafcec1","name":"lizheng",
+	 * "address":{"displayName":"address","id":"111","name":"Address","link":"广州市天河区222"},"age":22}'
+	 * </pre>
+	 * @param json
+	 * @return
+	 */
 	@PUT
 	public Object doModify(@JsonBody JSONObject json) {
 		log.info("[doModify]" + json);
@@ -89,14 +137,22 @@ public class SamplePlugin extends InvisiblePlugin {
 		return JSONObject.fromObject(person).toString();
 	}
 
+	/**
+	 * Usage Example:
+	 * <pre>
+	 * curl -X POST -H Content-Type:application/json ${JENKINS_PATH}/sample/list \
+ 	 * -d '{"ids": ["694d53226b744686b6882673efafcec1","fc842e38c6f5427c961be56378fd14e1"]}'
+ 	 * </pre>
+	 * @param qeryJson
+	 * @return
+	 */
 	@RequirePOST
-	@JsonResponse
 	public Object doList(@JsonBody JSONObject qeryJson) {
 		log.info("[doList]" + qeryJson);
 		String[] ids = StringToolkit.join(qeryJson.getJSONArray("ids"), ",", "").split("\\,");
 		List<Person> ret = personDao.queryIds(ids);
-		Map<String, List<Person>> retMap = new HashMap<>();
-		retMap.put("data", ret);
-		return retMap;
+		JSONObject json = new JSONObject();
+		json.put("data", ret);
+		return json.toString();
 	}
 }

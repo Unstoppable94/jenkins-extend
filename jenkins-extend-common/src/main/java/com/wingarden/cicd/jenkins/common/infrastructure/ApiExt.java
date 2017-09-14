@@ -18,8 +18,12 @@ public class ApiExt extends Api {
     }
 	
 	/**
-     * Generate raw string.
-     */
+	 * Generate raw string.
+	 * @param req 请求
+	 * @param rsp 响应
+	 * @throws IOException 文件操作异常
+	 * @throws ServletException 异常
+	 */
     public void doRaw(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
         setHeaders(rsp);
         rsp.setContentType("text/plain;charset=UTF-8");

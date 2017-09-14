@@ -17,7 +17,9 @@
 	<properties>
 		<jenkins.extend.version>0.0.1-SNAPSHOT</jenkins.extend.version>
 		<jenkins.version>2.60.3</jenkins.version>
+		<powermock.version>1.7.1</powermock.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<unirest.java.version>1.4.9</unirest.java.version>
 	</properties>
 
 	<developers>
@@ -35,6 +37,82 @@
 				<groupId>com.wingarden.cicd.jenkins.plugins</groupId>
 				<artifactId>jenkins-extend-common</artifactId>
 				<version>${jenkins.extend.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4</artifactId>
+				<version>${powermock.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-api-mockito</artifactId>
+				<version>${powermock.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.mockito</groupId>
+						<artifactId>mockito-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4-rule</artifactId>
+				<version>${powermock.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.objenesis</groupId>
+						<artifactId>objenesis</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.mockito</groupId>
+						<artifactId>mockito-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>1.10.19</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.objenesis</groupId>
+				<artifactId>objenesis</artifactId>
+				<version>2.5</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-classloading-xstream</artifactId>
+				<version>${powermock.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>com.thoughtworks.xstream</groupId>
+						<artifactId>xstream</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.mashape.unirest</groupId>
+				<artifactId>unirest-java</artifactId>
+				<version>${unirest.java.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-codec</groupId>
+						<artifactId>commons-codec</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -56,27 +134,27 @@
 		<repository>
 			<id>nexus-releases</id>
 			<name>Nexus Release Repository</name>
-			<url>http://192.168.234.3:8081/nexus/content/repositories/releases/</url>
+			<url>http://192.168.101.93:8081/repository/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
 			<name>Nexus Snapshot Repository</name>
-			<url>http://192.168.234.3:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://192.168.101.93:8081/repository/releases/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
 	<build>
-<!-- 		<plugins> -->
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
-<!-- 				<artifactId>maven-compiler-plugin</artifactId> -->
-<!-- 				<configuration> -->
-<!-- 					<source>1.7</source> -->
-<!-- 					<target>1.7</target> -->
-<!-- 					<encoding>UTF-8</encoding> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
-<!-- 		</plugins> -->
+		<!-- <plugins> -->
+		<!-- <plugin> -->
+		<!-- <groupId>org.apache.maven.plugins</groupId> -->
+		<!-- <artifactId>maven-compiler-plugin</artifactId> -->
+		<!-- <configuration> -->
+		<!-- <source>1.7</source> -->
+		<!-- <target>1.7</target> -->
+		<!-- <encoding>UTF-8</encoding> -->
+		<!-- </configuration> -->
+		<!-- </plugin> -->
+		<!-- </plugins> -->
 		<pluginManagement>
 			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
@@ -124,5 +202,5 @@
 	<modules>
 		<module>jenkins-extend-common</module>
 		<module>sampleplugin</module>
-</modules>
+	</modules>
 </project>

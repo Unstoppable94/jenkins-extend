@@ -78,7 +78,7 @@ public abstract class AbstractResource implements Resource {
 			pattern.append("\\@(").append(StringToolkit.join(Arrays.asList(ids), "|", "")).append(")")
 			.append("\\.xml$");
 		}
-		LogUtils.debug(String.format("[getXmlFileNamePattern]---pattern is:%s", pattern.toString()));
+		LogUtils.debug(String.format("[%s#getXmlFileNamePattern]---pattern is:%s",this.getClass().getName(), pattern.toString()));
 		return pattern.toString();
 	}
 
