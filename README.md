@@ -98,6 +98,6 @@ Wingrow需要获取及展示大规模数量的项目的构建与统计数据（�
   ```
 * 参考[`SamplePlugin`](sampleplugin/src/main/java/com/wingarden/cicd/jenkins/plugins/sampleplugin/SamplePlugin.java)，定义远程访问方法。关于方法与URL的绑定，详见[`URL绑定指南`](http://stapler.kohsuke.org/reference.html)
 
-* 测试：参考[`SamplePluginTest`](sampleplugin/src/test/java/com/wingarden/cicd/jenkins/plugins/sampleplugin/SamplePluginTest.java)
+* 测试：参考[`SamplePluginTest`](sampleplugin/src/test/java/com/wingarden/cicd/jenkins/plugins/sampleplugin/SamplePluginTest.java),[`Jenkins单元测试`](https://wiki.jenkins.io/display/JENKINS/Unit+Test),[`Jenkins单元测试+Mock`](https://wiki.jenkins.io/display/JENKINS/Mocking+in+Unit+Tests)
 
 ### 其它配置
