@@ -9,6 +9,7 @@ public class GlobalConfig {
 	
 	static {
 		String jenkinsPath  = Jenkins.getInstance().getRootDir().getPath();
+//		String workPath = Jenkins.getInstance().getWorkspaceFor(null);
 		if (!jenkinsPath.endsWith("/")) {
 			jenkinsPath = jenkinsPath + "/";
 		}

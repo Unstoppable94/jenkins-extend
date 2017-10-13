@@ -33,6 +33,11 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.39</version>
+			</dependency>
+			<dependency>
 				<groupId>com.wingarden.cicd.jenkins.plugins</groupId>
 				<artifactId>jenkins-extend-common</artifactId>
 				<version>${jenkins.extend.version}</version>
@@ -201,5 +206,6 @@
 	<modules>
 		<module>jenkins-extend-common</module>
 		<module>sampleplugin</module>
+		<module>statistics-plugin</module>
 	</modules>
 </project>

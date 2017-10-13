@@ -1,8 +1,7 @@
 package com.wingarden.cicd.jenkins.plugins.sampleplugin;
 
-import java.util.HashMap;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.WebMethod;
@@ -27,7 +26,7 @@ import net.sf.json.JSONObject;
 
 @Extension
 @ExportedBean
-public class SamplePlugin extends InvisiblePlugin {
+public class SamplePlugin extends InvisiblePlugin implements Serializable {
 	private static final Logger log = LoggerFactory.getLogger(SamplePlugin.class);
 	private static final BaseDao<Person> personDao = new PersonDao();
 
@@ -37,6 +36,117 @@ public class SamplePlugin extends InvisiblePlugin {
 	public String getUrlName() {
 		return "sample";
 	}
+
+//	@WebMethod(name = "getprops")
+//	@Exported(name = "props")
+//	public String getProps() throws Exception {
+//		String ret = "";
+//		if (Jenkins.getInstance().getComputer("test_agent") != null) {
+//			VirtualChannel channel = Jenkins.getInstance().getComputer("test_agent").getChannel();
+//			FilePath filePath = new FilePath(channel, "/home/test");
+//
+//			try {
+//				filePath.mkdirs();
+//				filePath.child("test.txt").touch(System.currentTimeMillis());
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			} catch (InterruptedException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			try {
+//				// final SerializableJenkinsFactory factory = new SerializableJenkinsFactory();
+//				Properties props = channel.call(new MasterToSlaveCallable<Properties, Exception>() {
+//					public Properties call() throws Exception {
+//						// System.out.println("run on " + factory.create().getDisplayName());
+//						System.out.println("Jenkins instance is :" + Jenkins.getInstance());
+//						return System.getProperties();
+//					}
+//				});
+//
+//				System.out.println(props);
+//				ret = props.toString();
+//				System.out.println("###########################################");
+//				System.out.println(System.getProperties());
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (RuntimeException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		return ret;
+//	}
+//
+//	@WebMethod(name = "readlog")
+//	@Exported(name = "readlog")
+//	public String readBackSomeFileFromMaster() throws Exception {
+//		final String path = new File(Jenkins.getInstance().root, "config.xml").getAbsolutePath();
+//		System.out.println(path);
+//		// final Jenkins jenkins = Jenkins.getInstance();
+//		// Computer c = Jenkins.getInstance().getComputer("test_agent");
+//		Computer c = Jenkins.getInstance().getComputer("test_agent");
+//		if (c.isOffline()) {
+//			System.out.println("offline::" + System.currentTimeMillis());
+//			c.waitUntilOnline();
+//			System.out.println("online::" + System.currentTimeMillis());
+//		}
+//		VirtualChannel channel = c.getChannel();
+//		final ChannelProperty<Person> prop = new ChannelProperty<>(Person.class, "person1");
+//		System.out.println("prop is::" + prop);// prop is::hudson.remoting.ChannelProperty@25e165d6
+//		if (channel instanceof Channel) {
+//			System.out.println("is channel");
+//			((Channel) channel).setProperty("nodeName", "test_agent");
+//
+//			Person person = new Person();
+//			((Channel) channel).setProperty(prop, person);
+//			((Channel) channel).setProperty("person", person);
+//			System.out.println("Jenkins is:" + person);
+//		}
+//		String ret = channel.call(new SlaveToMasterCallable<String, Exception>() {
+//			public String call() throws Exception {
+//				// System.out.println("run on " + jenkins.toComputer().getName());
+//				FilePath filePath = new FilePath(SlaveComputer.getChannelToMaster(), path);
+//				String ret = filePath.readToString();
+//				System.out.println("The Computer is:" + SlaveComputer.currentComputer());
+//				System.out.println("The Executor is :" + Executor.currentExecutor().getDisplayName());
+//				System.out.println("Channel name is::" + Channel.current().getName());
+//				System.out.println("Node name is::" + Channel.current().getRemoteProperty("nodeName"));
+//				// final ChannelProperty<Person> prop = new ChannelProperty<>(Person.class,
+//				// "person1");
+//				System.out.println("prop is::" + prop);// but here:prop is::hudson.remoting.ChannelProperty@4879d0b
+//				Person person = Channel.current().getRemoteProperty(prop);
+//				System.out.println("Jenkins is:" + person);
+//				System.out.println("Person is::" + Channel.current().getRemoteProperty("person"));
+//				System.out.println("Person is::" + Channel.current().getRemoteProperty(prop));
+//				System.out.println("read:: " + ret);
+//
+//				// System.out.println(Computer.currentComputer().getNode().getNodeName());//NullPointException
+//
+//				filePath.act(new SlaveToMasterFileCallable<String>() {
+//					@Override
+//					public String invoke(File f, VirtualChannel channel) throws IOException, InterruptedException {
+//						if (channel instanceof Channel) {
+//							System.out.println("is master channel");
+//							System.out.println("Jenkins master is:::" + ((Channel) channel).getProperty(prop));
+//							System.out.println("Jenkins master is:::" + ((Channel) channel).getProperty("nodeName"));
+//							System.out.println("Jenkins master is:::" + ((Channel) channel).getProperty("person"));
+//						}
+//						return null;
+//					}
+//				});
+//				return ret;
+//			}
+//		});
+//
+//		return ret;
+//	}
 
 	/**
 	 * Usage Example:
@@ -98,9 +208,11 @@ public class SamplePlugin extends InvisiblePlugin {
 
 	/**
 	 * Usage Example:
+	 * 
 	 * <pre>
 	 * curl ${JENKINS_PATH}/sample/persons/personid1,personid2,...
 	 * </pre>
+	 * 
 	 * @return
 	 */
 	@WebMethod(name = "persons")
@@ -120,12 +232,14 @@ public class SamplePlugin extends InvisiblePlugin {
 
 	/**
 	 * Usage Example:
+	 * 
 	 * <pre>
 	 * curl -X PUT -H Content-Type:application/json
 	 * ${JENKINS_PATH}/jenkins/sample/modify \ -d
 	 * '{"displayName":"李征1","id":"694d53226b744686b6882673efafcec1","name":"lizheng",
 	 * "address":{"displayName":"address","id":"111","name":"Address","link":"广州市天河区222"},"age":22}'
 	 * </pre>
+	 * 
 	 * @param json
 	 * @return
 	 */
@@ -139,10 +253,12 @@ public class SamplePlugin extends InvisiblePlugin {
 
 	/**
 	 * Usage Example:
+	 * 
 	 * <pre>
 	 * curl -X POST -H Content-Type:application/json ${JENKINS_PATH}/sample/list \
- 	 * -d '{"ids": ["694d53226b744686b6882673efafcec1","fc842e38c6f5427c961be56378fd14e1"]}'
- 	 * </pre>
+	 * -d '{"ids": ["694d53226b744686b6882673efafcec1","fc842e38c6f5427c961be56378fd14e1"]}'
+	 * </pre>
+	 * 
 	 * @param qeryJson
 	 * @return
 	 */

@@ -53,6 +53,8 @@ public class SamplePluginTest {
 		  .field("file", new File(getClass().getResource("/sampleplugin.hpi").toURI()))
 		  .asJson();
 		Assert.assertEquals("sampleplugin", j.getPluginManager().getPlugin("sampleplugin").getDisplayName());
+		j.getInstance().getExtensionList(SamplePlugin.class);
+		System.out.println("");
 	}
 	
 	@Test
