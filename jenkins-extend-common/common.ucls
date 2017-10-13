@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.1" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.wingarden.cicd.jenkins.common.infrastructure.InvisiblePlugin" 
+    project="jenkins-extend-common" 
+    file="/jenkins-extend-common/src/main/java/com/wingarden/cicd/jenkins/common/infrastructure/InvisiblePlugin.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="700" y="220"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.wingarden.cicd.jenkins.common.infrastructure.VisiblePulgin" 
+    project="jenkins-extend-common" 
+    file="/jenkins-extend-common/src/main/java/com/wingarden/cicd/jenkins/common/infrastructure/VisiblePulgin.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1095" y="218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.wingarden.cicd.jenkins.common.infrastructure.AbstractResource" 
+    project="jenkins-extend-common" 
+    file="/jenkins-extend-common/src/main/java/com/wingarden/cicd/jenkins/common/infrastructure/AbstractResource.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="307" y="604"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="com.wingarden.cicd.jenkins.common.infrastructure.Resource" 
+    project="jenkins-extend-common" 
+    file="/jenkins-extend-common/src/main/java/com/wingarden/cicd/jenkins/common/infrastructure/Resource.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="333" y="226"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="com.wingarden.cicd.jenkins.common.infrastructure.ApiAble" 
+    project="jenkins-extend-common" 
+    file="/jenkins-extend-common/src/main/java/com/wingarden/cicd/jenkins/common/infrastructure/ApiAble.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="695" y="55"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="com.wingarden.cicd.jenkins.common.dal.dao.BaseDao" 
+    project="jenkins-extend-common" 
+    file="/jenkins-extend-common/src/main/java/com/wingarden/cicd/jenkins/common/dal/dao/BaseDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="720" y="512"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="com.wingarden.cicd.jenkins.common.dal.dao.BaseFsDao" 
+    project="jenkins-extend-common" 
+    file="/jenkins-extend-common/src/main/java/com/wingarden/cicd/jenkins/common/dal/dao/BaseFsDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="712" y="846"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="true" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <note id="8">    
+    <position height="82" width="210" x="-69" y="380"/>    
+    <text><![CDATA[
+    
+默认的资源实体类，定义了资源操作的常用方法。
+    
+    ]]>
+    </text>  
+  </note>  
+  <note id="9">    
+    <position height="77" width="373" x="104" y="14"/>    
+    <text><![CDATA[通过"../api/json"、"../api/xml"的方式，对外暴露资源的远程访问API。
+如：http://JENKINS_URL:8080/job/test/api/json,返回名称为test的项目对象的json格式。
+
+    
+    ]]>
+    </text>  
+  </note>  
+  <note id="10">    
+    <position height="72" width="200" x="-59" y="129"/>    
+    <text><![CDATA[资源实体，一个资源有id、name、url三个必要的属性。
+    
+    ]]>
+    </text>  
+  </note>  
+  <note id="11">    
+    <position height="68" width="200" x="925" y="483"/>    
+    <text><![CDATA[数据访问接口，定义了资源通用的CRUD操作。
+    
+    ]]>
+    </text>  
+  </note>  
+  <note id="12">    
+    <position height="100" width="200" x="941" y="720"/>    
+    <text><![CDATA[基于文件系统的数据访问基类。资源数据将保存在文件系统的插件数据目录（$JENKINS_WORK_HOME/pluginext-data)下
+    
+    ]]>
+    </text>  
+  </note>  
+  <note id="13">    
+    <position height="86" width="200" x="898" y="345"/>    
+    <text><![CDATA[不可见插件类，不可见是指只提供远程访问的restfulapi，不在jenkins界面上增加UI元素的插件。
+    
+    ]]>
+    </text>  
+  </note>  
+  <note id="14">    
+    <position height="100" width="200" x="1183" y="402"/>    
+    <text><![CDATA[可见插件基类，可见是指既可提供远程访问API，又可在jenkins界面上增加UI元素的插件。
+    
+    ]]>
+    </text>  
+  </note>  
+  <realization id="15">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <text-link id="16">    
+    <link-end type="SOURCE" refId="9"/>    
+    <link-end type="TARGET" refId="5"/>  
+  </text-link>  
+  <text-link id="17">    
+    <link-end type="SOURCE" refId="13"/>    
+    <link-end type="TARGET" refId="1"/>  
+  </text-link>  
+  <text-link id="18">    
+    <link-end type="SOURCE" refId="10"/>    
+    <link-end type="TARGET" refId="4"/>  
+  </text-link>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <realization id="21">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <text-link id="22">    
+    <link-end type="SOURCE" refId="11"/>    
+    <link-end type="TARGET" refId="6"/>  
+  </text-link>  
+  <text-link id="23">    
+    <link-end type="SOURCE" refId="14"/>    
+    <link-end type="TARGET" refId="2"/>  
+  </text-link>  
+  <association id="24">    
+    <end type="SOURCE" refId="7" navigable="false" variant="ASSOCIATION">      
+      <attribute id="25" name="tmpRs">        
+        <position height="0" width="0" x="-51" y="9"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-51" y="9"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="27">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <text-link id="28">    
+    <link-end type="SOURCE" refId="12"/>    
+    <link-end type="TARGET" refId="7"/>  
+  </text-link>  
+  <text-link id="29">    
+    <link-end type="SOURCE" refId="8"/>    
+    <link-end type="TARGET" refId="3"/>  
+  </text-link>  
+  <realization id="30">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="false" private="false" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
