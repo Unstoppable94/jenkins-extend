@@ -3,7 +3,9 @@ package tools;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jvnet.hudson.test.FailureBuilder;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.SleepBuilder;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -55,7 +57,8 @@ public class BuildGen {
 		}
 
 		prj.setConcurrentBuild(true);
-		Builder builder = new Shell("sleep 1 && errorshell");
+//		Builder builder = new Shell("sleep 1 && errorshell");
+		Builder builder = new FailureBuilder();
 		prj.getBuildersList().add(builder);
 
 		for (int i = 0; i < buildCount; i++) {
@@ -75,7 +78,8 @@ public class BuildGen {
 		}
 
 		prj.setConcurrentBuild(true);
-		Builder builder = new Shell("sleep 6000");
+//		Builder builder = new Shell("sleep 6000");
+		Builder builder = new SleepBuilder(6000000);
 		prj.getBuildersList().add(builder);
 
 		for (int i = 0; i < buildCount; i++) {
@@ -97,7 +101,7 @@ public class BuildGen {
 		}
 
 		prj.setConcurrentBuild(true);
-		Builder builder = new Shell("sleep 300");
+		Builder builder = new SleepBuilder(300000);
 		prj.getBuildersList().add(builder);
 
 		for (int i = 0; i < buildCount; i++) {
