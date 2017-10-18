@@ -13,13 +13,13 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import com.wingarden.cicd.jenkins.common.utils.CollectionUtils;
 
-import hudson.model.AbstractProject;
+import hudson.model.Job;
 import hudson.model.TopLevelItem;
 import hudson.model.View;
 import jenkins.model.Jenkins;
 
 @SuppressWarnings("rawtypes")
-public class ProjectList<P extends AbstractProject> extends AbstractList<P> {
+public class ProjectList<P extends Job> extends AbstractList<P> {
 	private Iterable<P> base;
 	private Integer size;
 	private Class<P> cls;

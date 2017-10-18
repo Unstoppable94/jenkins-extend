@@ -10,7 +10,7 @@ import com.wingarden.cicd.jenkins.common.utils.CollectionUtils;
 import com.wingarden.cicd.jenkins.common.utils.JenkinsUtil;
 import com.wingarden.cicd.jenkins.plugins.statisticsplugin.dal.model.ProjectStat;
 
-import hudson.model.AbstractProject;
+import hudson.model.Job;
 import hudson.model.View;
 
 @SuppressWarnings("rawtypes")
@@ -23,18 +23,18 @@ public class ProjectStatDao extends BaseFsDao<ProjectStat> {
 	 * @return 当前时刻项目状态数量统计对象
 	 */
 	public ProjectStat getCurStat(List<String> groupIds) {
-		ProjectList<AbstractProject> projects = null;
+		ProjectList<Job> projects = null;
 		if (CollectionUtils.isNotEmpty(groupIds)) {
-			projects = new ProjectList<>(AbstractProject.class,JenkinsUtil.getViews(groupIds).toArray(new View[] {}));
+			projects = new ProjectList<>(Job.class,JenkinsUtil.getViews(groupIds).toArray(new View[] {}));
 		} else {
-			projects = new ProjectList<>(AbstractProject.class,true);
+			projects = new ProjectList<>(Job.class,true);
 		}
 		ProjectStat projectStat = buildProjectStat(projects);
 		insert(projectStat);
 		return projectStat;
 	}
 
-	private ProjectStat buildProjectStat(ProjectList<AbstractProject> projects) {
+	private ProjectStat buildProjectStat(ProjectList<Job> projects) {
 		ProjectStat projectStat = new ProjectStat();
 		projectStat.setProjectStatTime(new Date());
 		long total = 0;
@@ -45,7 +45,7 @@ public class ProjectStatDao extends BaseFsDao<ProjectStat> {
 		long success = 0;
 		long aborted = 0;
 		long disabled = 0;
-		for (AbstractProject prj : projects) {
+		for (Job prj : projects) {
 			ProjectStatus status = ProjectStatus.parseStatus(prj.getIconColor());
 			total++;
 			//对于inquque状态的特殊处理

@@ -2,8 +2,6 @@ package com.wingarden.cicd.jenkins.plugins.statisticsplugin.dal.model;
 
 import java.util.Date;
 
-import javax.annotation.Nonnull;
-
 import com.wingarden.cicd.jenkins.common.infrastructure.AbstractResource;
 
 public class ProjectStat extends AbstractResource {
@@ -22,7 +20,6 @@ public class ProjectStat extends AbstractResource {
 	private long disabled;
 	private String nodeName;
 	
-	@Nonnull
 	public Date getProjectStatTime() {
 		return projectStatTime == null ? null : (Date)projectStatTime.clone();
 	}

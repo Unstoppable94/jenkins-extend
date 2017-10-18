@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -35,14 +34,11 @@ public class StatisticsPluginTest {
 		headers.put("accept", "application/json");
 		deployPluginByHttp();
 
-		j.jenkins.setNumExecutors(50);
+		j.jenkins.setNumExecutors(30);
 		ProjectGen.initProject4Test(j);
 		Thread.currentThread().sleep(5000);
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Test
 	public void testGetUrlName() throws Exception {
