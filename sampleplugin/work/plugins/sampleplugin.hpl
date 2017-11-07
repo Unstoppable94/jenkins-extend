@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Group-Id: com.wingarden.cicd.jenkins.plugins
+Short-Name: sampleplugin
+Long-Name: sampleplugin
+Plugin-Version: 0.0.1-SNAPSHOT (private-ab4ac6a2-Administrator)
+Hudson-Version: 2.60.3
+Jenkins-Version: 2.60.3
+Plugin-Developers: Cai Wan Li:cavin:caiwl@winhong.com
+Libraries: E:\jenkins-extend\sampleplugin\target\classes,C:\Users\Admi
+ nistrator\.m2\repository\com\alibaba\fastjson\1.2.39\fastjson-1.2.39.
+ jar,C:\Users\Administrator\.m2\repository\com\wingarden\cicd\jenkins\
+ plugins\jenkins-extend-common\0.0.1-SNAPSHOT\jenkins-extend-common-0.
+ 0.1-SNAPSHOT.jar
+Resource-Path: E:\jenkins-extend\sampleplugin\src\main\webapp
+

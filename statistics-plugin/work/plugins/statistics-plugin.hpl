@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Group-Id: com.wingarden.cicd.jenkins.plugins
+Short-Name: statistics-plugin
+Long-Name: statistics-plugin
+Plugin-Version: 0.0.1-SNAPSHOT (private-10/18/2017 14:01-Administrator)
+Hudson-Version: 2.60.3
+Jenkins-Version: 2.60.3
+Plugin-Developers: Cai Wan Li:cavin:caiwl@winhong.com
+Libraries: E:\jenkins-extend\statistics-plugin\target\classes,C:\Users
+ \Administrator\.m2\repository\com\alibaba\fastjson\1.2.39\fastjson-1.
+ 2.39.jar,C:\Users\Administrator\.m2\repository\com\wingarden\cicd\jen
+ kins\plugins\jenkins-extend-common\0.0.1-SNAPSHOT\jenkins-extend-comm
+ on-0.0.1-SNAPSHOT.jar
+Resource-Path: E:\jenkins-extend\statistics-plugin\src\main\webapp
+

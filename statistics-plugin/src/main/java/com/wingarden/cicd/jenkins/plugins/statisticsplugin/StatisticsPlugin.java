@@ -77,7 +77,39 @@ public class StatisticsPlugin extends InvisiblePlugin {
 			return JsonResponseUtils.error(ExceptionUtils.makeStackTrace(e));
 		}
 	}
-
+	
+	public Object doBuildDetial(@JsonBody JSONObject json){
+		log.info("Param is [{}]",json.toString());
+		System.out.println(json.toString());
+		try {
+			Date beginTime = null;
+			Date endTime = null;
+			
+			if (json.containsKey("beginTime")) {
+				beginTime = DateToolkit.utilStrToDate(json.getString("beginTime"));
+			}
+			if (json.containsKey("endTime")) {
+				endTime = DateToolkit.utilStrToDate(json.getString("endTime"));
+			}
+			
+			//时间校验
+			if (null == beginTime && null != endTime) {
+				return JsonResponseUtils.error("开始时间与结束必须同时存在！");
+			}
+			if (null != beginTime && null == endTime) {
+				endTime = new Date();
+			}
+			if (null != beginTime && null != endTime && !endTime.after(beginTime)) {
+				return JsonResponseUtils.error("结束时间不能大于开始时间！");
+			}
+			
+			return JsonResponseUtils.success(statData.getCurtBuildStat(beginTime, endTime));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return JsonResponseUtils.error(ExceptionUtils.makeStackTrace(e));
+		}
+	}
+	
 	@RequirePOST
 	@WebMethod(name = "projectstat")
 	public Object doProjectStat(@JsonBody JSONObject json) {
@@ -94,7 +126,7 @@ public class StatisticsPlugin extends InvisiblePlugin {
 			return JsonResponseUtils.error(ExceptionUtils.makeStackTrace(e));
 		}
 	}
-
+	
 	public static StatisticsPlugin getInstance() {
 		return Jenkins.getInstance().getExtensionList(StatisticsPlugin.class).get(0);
 	}

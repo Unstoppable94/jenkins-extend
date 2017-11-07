@@ -4,20 +4,20 @@ import java.util.Collection;
 
 import com.google.common.base.Predicate;
 
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
+import hudson.model.Job;
+import hudson.model.Run;
 import hudson.model.View;
 import hudson.util.RunList;
 
 @SuppressWarnings("rawtypes")
-public class BuildList<R extends AbstractBuild> {
+public class BuildList<R extends Run> {
 	private RunList<R> runList;
 
 	public BuildList() {
 		runList = new RunList<>();
 	}
 
-	public BuildList(AbstractProject j) {
+	public BuildList(Job j) {
 		runList = new RunList<>(j);
 	}
 
@@ -25,7 +25,7 @@ public class BuildList<R extends AbstractBuild> {
 		runList = new RunList<>(view);
 	}
 
-	public BuildList(Collection<AbstractProject> jobs) {
+	public BuildList(Collection<Job> jobs) {
 		runList = new RunList<>(jobs);
 	}
 

@@ -1,7 +1,9 @@
 package com.wingarden.cicd.jenkins.plugins.statisticsplugin.dal.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.wingarden.cicd.jenkins.common.dal.dao.BaseFsDao;
 import com.wingarden.cicd.jenkins.common.dal.model.BuildList;
@@ -9,10 +11,13 @@ import com.wingarden.cicd.jenkins.common.dal.model.BuildStatus;
 import com.wingarden.cicd.jenkins.common.dal.model.ProjectList;
 import com.wingarden.cicd.jenkins.common.utils.CollectionUtils;
 import com.wingarden.cicd.jenkins.common.utils.JenkinsUtil;
+import com.wingarden.cicd.jenkins.plugins.statisticsplugin.dal.model.BuildDetial;
 import com.wingarden.cicd.jenkins.plugins.statisticsplugin.dal.model.BuildStat;
 
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
+import hudson.model.Job;
+import hudson.model.Run;
 import hudson.model.View;
 import hudson.util.RunList;
 
@@ -28,12 +33,12 @@ public class BuildStatDao extends BaseFsDao<BuildStat> {
 	 * @return 构建状态数量统计对象
 	 */
 	public BuildStat getCurStat(List<String> groupIds,List<String> projectIds,Date beginTime,Date endTime) {
-		ProjectList<AbstractProject> projects = null;
+		ProjectList<Job> projects = null;
 		if (CollectionUtils.isEmpty(groupIds) && CollectionUtils.isEmpty(projectIds)){
-			projects = new ProjectList<>(AbstractProject.class,true);
+			projects = new ProjectList<>(Job.class,true);
 		}else {
 			if (CollectionUtils.isNotEmpty(groupIds)) {
-				projects = new ProjectList<>(AbstractProject.class,JenkinsUtil.getViews(groupIds).toArray(new View[] {}));
+				projects = new ProjectList<>(Job.class,JenkinsUtil.getViews(groupIds).toArray(new View[] {}));
 			}
 			
 			if (CollectionUtils.isNotEmpty(projectIds)) {
@@ -41,7 +46,7 @@ public class BuildStatDao extends BaseFsDao<BuildStat> {
 			}
 		}
 		
-		RunList<AbstractBuild> bList = new BuildList<>(projects).getRunList();
+		RunList<Run> bList = new BuildList<>(projects).getRunList();
 		if (null != beginTime && null != endTime && endTime.after(beginTime)) {
 			bList = bList.byTimestamp(beginTime.getTime(), endTime.getTime());
 		}
@@ -50,7 +55,7 @@ public class BuildStatDao extends BaseFsDao<BuildStat> {
 		return stat;
 	}
 
-	private BuildStat buildBuildStat(RunList<AbstractBuild> builds) {
+	private BuildStat buildBuildStat(RunList<Run> builds) {
 		BuildStat stat = new BuildStat();
 		stat.setStatTime(new Date());
 		long total = 0;
@@ -59,7 +64,7 @@ public class BuildStatDao extends BaseFsDao<BuildStat> {
 		long success = 0;
 		long aborted = 0;
 		long pending = 0;
-		for (AbstractBuild b : builds) {
+		for (Run b : builds) {
 			BuildStatus status = BuildStatus.parseStatus(b.getIconColor());
 			total++;
 			switch (status) {
@@ -90,5 +95,25 @@ public class BuildStatDao extends BaseFsDao<BuildStat> {
 		stat.setPending(pending);
 		stat.setNodeName(JenkinsUtil.getCurrentNodeName());
 		return stat;
+	}
+	public List<BuildDetial> getCurStat(Date beginTime, Date endTime) {
+		// TODO Auto-generated method stub
+		ProjectList<Job> projects = null;
+		List<BuildDetial> listBuild = new ArrayList<BuildDetial>();
+		RunList<Run> bList = new BuildList<>(projects).getRunList();
+		if (null != beginTime && null != endTime && endTime.after(beginTime)) {
+			bList = bList.byTimestamp(beginTime.getTime(), endTime.getTime());
+		}
+		int size = bList.size();
+		for(int i=0; i<size; i++) {
+			Run run = bList.get(size);
+			String timestamp = run.getTimestampString2();
+			BuildDetial bd = new BuildDetial();
+			bd.setNumber(1);
+			bd.setRunTime(timestamp);
+			listBuild.add(bd);
+		}
+		
+		return null;
 	}
 }

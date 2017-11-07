@@ -17,4 +17,10 @@ public class ClusterStatData {
 	public BuildStat getCurtBuildStat(List<String> groupIds,List<String> projectIds,Date beginTime,Date endTime) {
 		return BuildStatDao.getCurStat(groupIds, projectIds, beginTime, endTime);
 	}
+
+	public List<BuildDetial> getCurtBuildStat(Date beginTime, Date endTime) {
+		// TODO Auto-generated method stub
+		
+		return BuildStatDao.getCurStat(beginTime, endTime);
+	}
 }
